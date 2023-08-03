@@ -14,7 +14,7 @@ export function Profile() {
           Matheus Soares
         </span>
         <span className="truncate text-sm/5 text-zinc-500">
-          maths.soarsdfsdfsdfsdfsdes99@gmail.com
+          maths.soares99@gmail.com
         </span>
       </div>
 
