@@ -45,7 +45,7 @@ export function SettingsTab() {
           value="tab8"
           isSelected={currentTab === 'tab8'}
         />
-        <TabItem title="API" value="tab9 " isSelected={currentTab === 'tab9'} />
+        <TabItem title="API" value="tab9" isSelected={currentTab === 'tab9'} />
       </Tabs.List>
       <Tabs.Content value="my-details">Tab one content</Tabs.Content>
     </Tabs.Root>
