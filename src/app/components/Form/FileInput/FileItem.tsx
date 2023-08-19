@@ -1,18 +1,46 @@
 import { CheckCircle2, File, Trash2 } from 'lucide-react'
 import { formatBytes } from '../../utils/format-bytes'
 import { Button } from '../../Button'
+import { tv, VariantProps } from 'tailwind-variants'
 
-interface FileItemProps {
+const fileItem = tv({
+  slots: {
+    wrapper: 'flex items-start gap-4 rounded-lg border border-zinc-200 p-4',
+    icon: 'flex items-center rounded-full border-6 border-violet-50 bg-violet-100 p-2 text-violet-600',
+    deleteButton: '',
+  },
+
+  variants: {
+    state: {
+      progress: {
+        wrapper: '',
+      },
+      complete: {
+        wrapper: 'border-violet-500',
+      },
+      error: {
+        wrapper: 'bg-error-25 border-error-300',
+        icon: 'border-error-50 bg-error-100 text-error-600',
+        deleteButton: 'text-error-700 hover:text-error-900',
+      },
+    },
+  },
+  defaultVariants: {
+    state: 'progress',
+  },
+})
+
+interface FileItemProps extends VariantProps<typeof fileItem> {
   name: string
   size: number
 }
 
-export function FileItem({ name, size }: FileItemProps) {
-  const state = 'complete' as 'progress' | 'error' | 'complete'
+export function FileItem({ name, size, state }: FileItemProps) {
+  const { wrapper, icon, deleteButton } = fileItem({ state })
 
   return (
-    <div className="flex items-start gap-4 rounded-lg border border-zinc-200 p-4">
-      <div className="flex items-center rounded-full border-6 border-violet-50 bg-violet-100 p-2 text-violet-600">
+    <div className={wrapper()}>
+      <div className={icon()}>
         <File className="h-4 w-4" />
       </div>
 
@@ -52,8 +80,13 @@ export function FileItem({ name, size }: FileItemProps) {
       {state === 'complete' ? (
         <CheckCircle2 className="h-5 w-5 fill-violet-600 text-white" />
       ) : (
-        <Button variant="ghost" type="button" title="Logout">
-          <Trash2 className="h-5 w-5 text-zinc-500" />
+        <Button
+          className={deleteButton()}
+          variant="ghost"
+          type="button"
+          title="Logout"
+        >
+          <Trash2 className="h-5 w-5 " />
         </Button>
       )}
     </div>
