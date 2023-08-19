@@ -4,6 +4,7 @@ import { formatBytes } from '../../utils/format-bytes'
 import { useFileInput } from './Root'
 import { File, Trash } from 'lucide-react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { Button } from '../../Button'
 
 export function FileList() {
   const { files } = useFileInput()
@@ -36,13 +37,9 @@ export function FileList() {
                 <span className="text-sm">40%</span>
               </div>
             </div>
-            <button
-              type="button"
-              title="Logout"
-              className="ml-auto rounded-md p-2 hover:bg-zinc-50"
-            >
+            <Button variant="ghost" type="button" title="Logout">
               <Trash className="h-5 w-5 text-zinc-500" />
-            </button>
+            </Button>
           </div>
         )
       })}
